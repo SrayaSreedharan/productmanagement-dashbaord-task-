@@ -11,15 +11,16 @@
   <header>
     <h1>Flipy</h1>
     <div class="controls">
+<!-- ==========================================search box================================== -->
       <input type="search" id="search" placeholder="Search products..." />
-
+<!-- =========================================category section============================= -->
       <select id="categoryFilter">
         <option value="All" selected>All</option>
         <option value="Electronics">Electronics</option>
         <option value="Clothing">Clothing</option>
         <option value="Books">Books</option>
       </select>
-
+<!-- ========================================sort section================================= -->
       <select id="sort">
         <option value="default">Sort</option>
         <option value="price-asc">Price: Low - High</option>
@@ -27,19 +28,17 @@
         <option value="rating-desc">Rating: High - Low</option>
       </select>
     </div>
-
+<!-- ===================================cart count ===================================== -->
     <div class="cart">
       🛒 Cart <span id="cart-count">0</span>
     </div>
   </header>
-
   <main>
     <div class="grid" id="product-grid"></div>
   </main>
-
   <div class="toast" id="toast"></div>
-
   <script>
+// ==========================================Product items=====================================
     const PRODUCTS = [
       {id:1,name:'Headphone',category:'Electronics',price:59.99,rating:4.5,img:'images/headphone.jpg'},
       {id:2,name:'Denim Jacket',category:'Clothing',price:79.99,rating:4.7,img:'images/denim.jpg'},
@@ -54,6 +53,8 @@
       {id:11,name:'Casualwear',category:'Clothing',price:66.95,rating:4.8,img:'images/casual.jpeg'},
       {id:8,name:'Samsung QLED',category:'Electronics',price:15.00,rating:3.9,img:'images/tv.jpg'},
     ];
+// ========================= Category Filter =======================================================
+// Default category is 'All'. State also tracks search, sort, and cart.
 
     let state = {
       products: PRODUCTS,
@@ -100,7 +101,7 @@
         </div>
       `).join('');
     }
-
+// ===================================add to cart section and increment the count of cart===============
     function addToCart(id) {
       state.cart[id] = (state.cart[id] || 0) + 1;
       localStorage.setItem('cart', JSON.stringify(state.cart));
